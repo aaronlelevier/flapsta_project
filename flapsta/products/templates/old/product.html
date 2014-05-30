@@ -1,0 +1,47 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+<!-- Slider -->
+
+<!-- 12 Products Below -->
+<h3>Product</h3>
+<ul>
+{% if product %}
+	<li><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></li>
+	<li>Device: iPhone 5/5s</li>
+	<li>Price: {{ product.unit_price|floatformat:2 }}</li>
+	<li>Sale Price: {{ product.sale_price|floatformat:2 }}</li>
+	<li>Colors: {{ product.colors.list_names }}</li>
+	<li>Categories: {{ product.ideas.list_names }}</li>
+{% else %}
+	<li>No Product</li>
+{% endif %}
+</ul>
+
+
+<h3>Same Color Products</h3>
+<ul>
+{% if color_products %}
+	{% for color_product in color_products %}
+		<li><a href="{{ color_product.get_absolute_url }}">{{ color_product.title }}</a></li>
+		<li>Price: {{ color_product.current_price }}</li>
+		{% endfor %}
+{% else %}
+	<li>No Same Color Product</li>
+{% endif %}
+</ul>
+
+
+<h3>Idea Products</h3>
+<ul>
+{% if idea_products %}
+	{% for idea_product in idea_products %}
+		<li><a href="{{ idea_product.get_absolute_url }}">{{ idea_product.title }}</a></li>
+		<li>Price: {{ idea_product.current_price }}</li>
+		{% endfor %}
+{% else %}
+	<li>No Product</li>
+{% endif %}
+</ul>
+
+{% endblock content %}

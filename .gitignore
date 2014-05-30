@@ -1,0 +1,13 @@
+*.pyc
+*.swp
+*.pyo
+*.db
+.DS_Store
+.coverage
+local_settings.py
+/static
+/flapsta/static
+/media
+/flapsta/media
+/flapsta/media/product_pictures
+/production

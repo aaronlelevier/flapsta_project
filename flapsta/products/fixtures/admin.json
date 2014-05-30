@@ -1,0 +1,362 @@
+[
+{
+  "pk": 1, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Aaron", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": true, 
+    "is_staff": true, 
+    "last_login": "2014-03-07T14:07:39.038Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$RkINQvskHjYw$09aab00342b28307b418e93a479aaa46", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-01T19:45:39.550Z"
+  }
+},
+{
+  "pk": 2, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "AaronLelevier", 
+    "first_name": "Aaron", 
+    "last_name": "Lelevier", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-10T00:34:05.655Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "!", 
+    "email": "aaron.lelevier@gmail.com", 
+    "date_joined": "2014-02-10T00:33:44.823Z"
+  }
+},
+{
+  "pk": 3, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "AronYsidoro", 
+    "first_name": "Aron", 
+    "last_name": "Ysidoro", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-25T13:45:17.030Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "!", 
+    "email": "", 
+    "date_joined": "2014-02-10T00:40:13.412Z"
+  }
+},
+{
+  "pk": 4, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "aron.ysidoro.3", 
+    "first_name": "Aron", 
+    "last_name": "Ysidoro", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-19T14:14:14.903Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "!", 
+    "email": "", 
+    "date_joined": "2014-02-10T00:49:57.546Z"
+  }
+},
+{
+  "pk": 5, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-20T15:01:59.098Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$tqdIXE8V5NQg$193e3ed65f1eed3966bea58425844e54", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:06:41.380Z"
+  }
+},
+{
+  "pk": 6, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki2", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:12:55.465Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$voOtpTVds4zj$c944d2dcf12dd6012ee99c79b5e03504", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:12:55.465Z"
+  }
+},
+{
+  "pk": 7, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki3", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": false, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:13:58.434Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$0XAxpreL8JNO$fa41409370e43af3984d66bbba3c069d", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:13:58.434Z"
+  }
+},
+{
+  "pk": 8, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki4", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:15:09.498Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$pciWCP7lBt82$8176ff32cc252fd108d155968a20900a", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:15:09.498Z"
+  }
+},
+{
+  "pk": 9, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki5", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:24:11.820Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$bMWoahnFOI0g$cf807be1ae6f30eb8ce3831a29e28f55", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:24:11.820Z"
+  }
+},
+{
+  "pk": 10, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki6", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": false, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:25:00.831Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$xCa8fMTkC6bY$40aa2fcdd61ddbb256b0ce9747ad77d1", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:25:00.831Z"
+  }
+},
+{
+  "pk": 11, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Yuki7", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:37:32.370Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$cjkgCeV8BlCN$2b25a4a75fe7fe97599f28d2553717cf", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:25:39.514Z"
+  }
+},
+{
+  "pk": 12, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Sam", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:57:28.247Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$iail5k90JiEz$9c6079e4957e56bf9f09165859b275a7", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:57:28.247Z"
+  }
+},
+{
+  "pk": 13, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "Sam2", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": false, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T14:58:28.419Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$npA3MjlSvouC$a97e678aadc11687a146b8c118fb140d", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T14:58:28.419Z"
+  }
+},
+{
+  "pk": 14, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "bob1", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": false, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-12T15:02:12.431Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$ts4XMHN8h43a$dea8d34e113ee1d5790e0c0af56f4974", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-12T15:02:12.431Z"
+  }
+},
+{
+  "pk": 15, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "test3", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-15T16:26:05.342Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$bfkHdlLCkLAT$35c003f077310c31eb498e68e1ba5682", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-15T16:22:49.143Z"
+  }
+},
+{
+  "pk": 16, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "TestC", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": false, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-18T15:41:17.056Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$X7WdK0FyhOd0$709a4ce1358860daec96314df5cdb782", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-18T15:41:17.056Z"
+  }
+},
+{
+  "pk": 17, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "TestD", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": false, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-18T15:46:26.518Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$3tpHPRZFk3FP$15ff3da1682e8dd44aacc1d77e7917cc", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-02-18T15:46:26.518Z"
+  }
+},
+{
+  "pk": 18, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "AaronLelevier4d23b9ce7d4a4329", 
+    "first_name": "Aaron", 
+    "last_name": "Lelevier", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-19T14:11:21.151Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "!", 
+    "email": "aaron.y.lelevier@gmail.com", 
+    "date_joined": "2014-02-19T14:11:21.132Z"
+  }
+},
+{
+  "pk": 19, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "AaronLelevier0740031f73374f3f", 
+    "first_name": "Aaron", 
+    "last_name": "Lelevier", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": false, 
+    "last_login": "2014-02-25T13:44:22.700Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "!", 
+    "email": "aaron.yy.lelevier@gmail.com", 
+    "date_joined": "2014-02-23T19:33:22.341Z"
+  }
+},
+{
+  "pk": 20, 
+  "model": "auth.user", 
+  "fields": {
+    "username": "admin", 
+    "first_name": "", 
+    "last_name": "", 
+    "is_active": true, 
+    "is_superuser": false, 
+    "is_staff": true, 
+    "last_login": "2014-03-08T18:26:54.230Z", 
+    "groups": [], 
+    "user_permissions": [], 
+    "password": "md5$tZquUwfuK8X8$0a0c5d8d1d32ec3c583043d163a95dc9", 
+    "email": "pyaaron@gmail.com", 
+    "date_joined": "2014-03-08T18:26:54.230Z"
+  }
+}
+]

@@ -1,0 +1,13 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+
+<h3>{{ title }}</h3>
+<ul>
+	<a href="{% url 'socialauth_begin' 'google' %}"><img src="{{ STATIC_URL }}img/logos/Login_GOOG.jpg" alt="Login with Google"></a>
+	<a href="{% url 'socialauth_begin' 'twitter' %}"><img src="{{ STATIC_URL }}img/logos/Login_TWTR.jpg" alt="Login with Twitter"></a>
+	<a href="{% url 'socialauth_begin' 'facebook' %}"><img src="{{ STATIC_URL }}img/logos/Login_FB.jpg" alt="Login with Facebook"></a>
+	<p><a href="{% url 'core:login_flapsta' %}">Login with Flapsta</a></p>
+</ul>
+
+{% endblock content %} 

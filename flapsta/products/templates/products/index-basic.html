@@ -1,0 +1,142 @@
+{% extends "products/base-basic.html" %}
+
+			{% block content %}
+			<div role="main" class="main">
+				<div id="content" class="content full">
+					<section class="home-top-clean">
+						<div class="slider-container">
+							<div class="slider" id="topRevolutionSlider" data-plugin-options='{"startheight": 492}'>
+								<ul>
+									<li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+										<img src="{{ STATIC_URL }}img/slides/f_visual_no1.jpg" data-bgposition="left top" data-bgrepeat="no-repeat">
+									</li>
+									<li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+										<img src="{{ STATIC_URL }}img/slides/f_visual_no03.jpg" data-bgposition="left top" data-bgrepeat="no-repeat">
+									</li>
+									<li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+										<img src="{{ STATIC_URL }}img/slides/f_visual_no04.jpg" data-bgposition="left top" data-bgrepeat="no-repeat">
+									</li>
+									<li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+										<img src="{{ STATIC_URL }}img/slides/f_visual_no5_1.jpg" data-bgposition="left top" data-bgrepeat="no-repeat">
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</section>
+				</div>
+				<div class="container">
+
+					<div class="row center" id="get-started">
+						<div class="col-md-12">
+							<h2 class="short lead">
+								We <strong class="alternative-font default">love</strong> what we do, and you will love too.
+							</h2>
+							<p class="featured lead">
+								Amazing design isn't done in a box.  It takes collaboration and ultimatiley emotion.  Our goal is to create designs that inspire.  We believe in beautiful art and the ability to express that on an individual level.
+							</p> 
+						</div>
+					</div>
+
+					<hr class="tall" />
+
+					<div class="row featured-boxes tertiary">
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInUp" data-appear-animation-delay="0">
+								<div class="box-content">
+									<i class="icon-featured icon icon-bell"></i>
+									<h4>Foundation</h4>
+									<p>Created with style and design as the number one consideration.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInDown" data-appear-animation-delay="150">
+								<div class="box-content">
+									<i class="icon-featured icon icon-rocket"></i>
+									<h4>Winner</h4>
+									<p>Awesome, from start to finish.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+								<div class="box-content">
+									<i class="icon-featured icon icon-cogs"></i>
+									<h4>Customizable</h4>
+									<p>We are always coming out with new designs. Customers can contact us with design requests. </p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInDown" data-appear-animation-delay="450">
+								<div class="box-content">
+									<i class="icon-featured icon icon-users"></i>
+									<h4>Our Customers</h4>
+									<p>Our customers are number one and always will be.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="tall invisible" />
+
+				</div>
+
+				<ul class="portfolio-list sort-destination full-width">
+				{% for product in featured_products %}
+					<li class="col-md-2 isotope-item websites">
+						<div class="portfolio-item">
+							<a href="{{ product.get_absolute_url }}" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>{{ product.title }}</h4>
+											<span class="date">iPhone 5/5S</span>
+											<span class="label label-primary">view product</span>
+										</span>
+									</span>
+									<img class="img-responsive" src="{{ STATIC_URL }}{{ product.image_one }}" title="{{ product.title }}" alt="{{ product.title }}">
+								</span>
+							</a>
+						</div>
+					</li>
+				{% endfor %}
+				</ul>
+
+
+				<section class="featured highlight">
+					<div class="container">
+						<div class="row center counters">
+							<div class="col-md-3">
+								<strong data-to="185">0</strong>
+								<label>Hours of Planning</label>
+							</div>
+							<div class="col-md-3">
+								<strong data-to="115">0</strong>
+								<label>Cups of Coffee</label>
+							</div>
+							<div class="col-md-3">
+								<strong data-to="378">0</strong>
+								<label>Proposed Designs</label>
+							</div>
+							<div class="col-md-3">
+								<strong data-to="{{ design_count }}">0</strong>
+								<label>Designs Selected</label>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="col-md-12">
+					<section class="call-to-action featured footer">
+						<div class="row">
+							<div class="center">
+								<h3>Recommend me a <strong>unique</strong> Flapsta designed case with all the <strong>features</strong> that I want. <a href="{% url 'products:recommended_product' recommended_product.slug %}" class="btn btn-lg btn-primary">Find Now!</a></h3>
+							</div>
+						</div>
+					</section>
+				</div>
+
+			</div> <!-- end .main -->
+			{% endblock content %} 

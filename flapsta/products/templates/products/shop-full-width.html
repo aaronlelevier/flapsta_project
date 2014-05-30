@@ -1,0 +1,107 @@
+{% extends "products/base-basic.html" %} 
+
+		{% block css %}
+		{{ block.super }}
+		<!-- Current Page Styles -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-shop.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-blog.css" />
+		{% endblock css %}
+
+			{% block content %}
+			<div role="main" class="main shop">
+
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-6">
+							<h2 class="shorter"><strong>Shop</strong></h2>
+							<p>Showing {{ products.start_index }}–{{ products.end_index }} of {{ products.paginator.count }} results.</p>
+						</div>
+						<div class="col-md-6">
+							<form name="portfolio_filter" action="" method="get"> 
+								<select class="orderby pull-right push-bottom" name="orderby" onChange="location = this.options[this.selectedIndex].value">
+										<option value="">Filter for Products</option>
+										{% for k, v in portfolio_filters.items %}
+											{% if k == slug %}
+												<option value="{% url 'products:portfolio_filtered_two' %}/{{ k }}/" selected="selected">{{ v }}</option>
+											{% else %}
+												<option value="{% url 'products:portfolio_filtered_two' %}{{ k }}/">{{ v }}</option>
+											{% endif %}
+										{% endfor %} 
+								</select>
+							</form>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<ul class="products">
+						{% for product in products.object_list %}
+
+							<li class="col-md-3 product">
+								{% if product.on_sale %} 
+								<a href="{{ product.get_absolute_url }}">
+									<span class="onsale">Sale!</span>
+								</a>
+								{% endif %}
+
+								<span class="thumb-info">
+									<a href="{{ product.get_absolute_url }}" class="add-to-cart-product">
+										<span><i class="icon icon-tag"></i>{{ product.title }}</span>
+									</a>
+									<a href="{{ product.get_absolute_url }}">
+										<span class="thumb-info-image">
+											<span class="thumb-info-act">
+												<span class="thumb-info-act-left"><em>View</em></span>
+												<span class="thumb-info-act-right"><em><i class="icon icon-plus"></i> Details</em></span>
+											</span>
+											<img class="img-responsive" src="{{ STATIC_URL }}{{ product.image_one }}" title="{{ product.title }}" alt="{{ product.title }}">
+										</span>
+									</a>
+									<span class="thumb-info-content">
+										<a href="{{ product.get_absolute_url }}">
+											<h4>{{ product.title }}</h4>
+											<span class="price">
+												{% if product.on_sale %}
+												<ins><span class="amount">${{ product.sale_price|floatformat:0 }}</span></ins>
+												<del><span class="amount">${{ product.unit_price|floatformat:0 }}</span></del>
+												{% else %}
+												<ins><span class="amount">${{ product.unit_price|floatformat:0 }}</span></ins>
+												{% endif %}
+											</span>
+										</a>
+									</span>
+								</span>
+							</li>
+							{% endfor %}
+
+						</ul>
+
+					</div>
+
+				<!-- Paginator -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="pagination pull-right">
+
+						{% if products.has_previous %}
+							<li><a href="?page={{ products.previous_page_number }}"><i class="icon icon-chevron-left"></i></a></li>
+						{% endif %}
+						{% for pg in products.paginator.page_range %}
+							{% if products.number == pg %}
+								<li class="active"><a href="?page={{ pg }}">{{ pg }}</a></li>
+							{% else %}
+								<li><a href="?page={{ pg }}">{{ pg }}</a></li>
+							{% endif %}
+						{% endfor %}
+						{% if products.has_next %}
+							<li><a href="?page={{ products.next_page_number }}"><i class="icon icon-chevron-right"></i></a></li>
+						{% endif %}
+						</ul>
+					</div>
+				</div>
+
+				</div>
+
+			</div><!-- div .main shop end-->
+			{% endblock content %}

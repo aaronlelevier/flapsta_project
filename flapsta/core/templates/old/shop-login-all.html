@@ -1,0 +1,42 @@
+{% extends "products/base-basic.html" %} 
+
+		{% block css %}
+		{{ block.super }}
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-shop.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-blog.css" />
+		{% endblock css %}
+
+			{% block content %}
+			<div role="main" class="main shop">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row featured-boxes">
+
+								<div class="col-md-6">
+									<div class="featured-box default">
+										<div class="box-content social_logins">
+											<p><a href="{% url 'socialauth_begin' 'google' %}"><img src="{{ STATIC_URL }}img/logos/Login_GOOG.jpg" alt="Login with Google"></a></p>
+											<p><a href="{% url 'socialauth_begin' 'twitter' %}"><img src="{{ STATIC_URL }}img/logos/Login_TWTR.jpg" alt="Login with Twitter"></a></p>
+											<p><a href="{% url 'socialauth_begin' 'facebook' %}"><img src="{{ STATIC_URL }}img/logos/Login_FB.jpg" alt="Login with Facebook"></a></p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="featured-box default login_h4">
+											<h4 class="login_all">Already have a Flapsta account?</h4>
+											<h4 class="login_all_link"><a class="login_all_link" href="{% url 'core:login_flapsta' %}">Click here to Login using Flapsta</a></h4>
+											<h4 class="login_all">If you don't already have an account?</h4>
+											<h4 class="login_all_link"><a class="login_all_link" href="{% url 'core:login_flapsta' %}">Click here to Signup using Flapsta</a></h4>
+											<h4 class="login_all">Having trouble logging in or forgot your password?</h4>
+											<h4 class="login_all_link"><a class="login_all_link" href="#">Click here to recover your account</a></h4>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endblock content %}

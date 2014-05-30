@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	<html> <!--<![endif]-->
+	<head>
+
+		<!-- Basic -->
+		<meta charset="utf-8">
+		<title>Flapsta {% block title %}{% endblock title %}</title>
+		<meta name="keywords" content="HTML5 Template" />
+		<meta name="description" content="Flapsta">
+		<meta name="author" content="Flapsta.com">
+
+		<!-- Mobile Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+		<!-- Web Fonts  -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Alegreya|Alegreya+SC|Oswald:400,300" rel="stylesheet" type="text/css">
+
+		{% block css %}
+		<!-- Libs CSS -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/fonts/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}vendor/owl-carousel/owl.carousel.css" media="screen" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}vendor/owl-carousel/owl.theme.css" media="screen" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}vendor/rs-plugin/css/settings.css" media="screen" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}vendor/isotope/jquery.isotope.css" media="screen" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}vendor/magnific-popup/magnific-popup.css" media="screen" /> 
+
+		<!-- Theme CSS -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-elements.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-animate.css">
+
+		<!-- Skin CSS -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/skins/default.css">
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/custom.css">
+
+		<!-- Responsive CSS -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-responsive.css" />
+		{% endblock css %}
+
+		{% block head_js %}
+		<!-- Head Libs -->
+		<script src="{{ STATIC_URL }}vendor/modernizr.js"></script>
+		{% endblock head_js %}
+
+		<!--[if IE]>
+			<link rel="stylesheet" href="{{ STATIC_URL }}css/ie.css">
+		<![endif]-->
+
+	</head>
+	<body>
+<!-- Django Messages -->
+{% if messages %}
+	<br>
+		<div class="col-md-12">
+  {% for message in messages %}
+		<div class="alert alert-{% if message.tags %}{{ message.tags }}{% endif %}">
+	    {{ message }}
+		</div>
+  {% endfor %}
+  	</div>
+{% endif %}
+
+		<div class="body">
+
+			{% block header %}
+			<header>
+				<div class="container">
+					<h1 class="logo">
+						<a href="{% url 'products:index' %}">
+							<img alt="Flapsta" src="{{ STATIC_URL }}img/logos/flapsta_logo_black.png" data-small-height="44">
+						</a>
+					</h1>
+					<div class="navbar-collapse nav-main-collapse collapse">
+						<div class="search" id="headerSearch">
+							<a href="{% url 'products:product_search' %}" id="headerSearchOpen"><i class="icon icon-search"></i></a>
+							<div class="search-input">
+
+								<form id="headerSearchForm" action="{% url 'products:product_search' %}" method="get">
+									<div class="input-group">
+										<input type="text" class="form-control search" name="q" id="q" placeholder="Search...">
+										<span class="input-group-btn"> 
+											<button class="btn btn-primary" type="button"><i class="icon icon-search"></i></button>
+										</span>
+									</div>
+								</form>
+
+							</div>
+						</div>
+						<nav class="nav-main mega-menu">
+							<ul class="nav nav-pills nav-main" id="mainMenu">
+								<!-- Normal Links -->
+								<li><a href="{% url 'products:index' %}">Home</a></li>
+
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="{% url 'products:portfolio' %}">
+										Portfolio
+										<i class="icon icon-caret-down"></i>
+									</a>
+									<ul class="dropdown-menu">
+										<li><a href="{% url 'products:portfolio_filtered' '-our_rating' %}">Best Match</a></li>
+										<li><a href="{% url 'products:portfolio_filtered' '-created' %}">Newest</a></li>
+										<li><a href="{% url 'products:portfolio_filtered' 'title' %}">Sort A-Z</a></li>
+										<li><a href="{% url 'products:portfolio_filtered' '-title' %}">Sort Z-A</a></li>
+										<li><a href="{% url 'products:portfolio_filtered' '-unit_price' %}">Price: Highest to Lowest</a></li>
+										<li><a href="{% url 'products:portfolio_filtered' 'sale_price' %}">Price: Lowest to Highest</a></li>
+									</ul>
+								</li>
+
+								<li class="dropdown">
+									<a class="dropdown-toggle" href="{% url 'products:portfolio' %}">
+										Designs
+										<i class="icon icon-caret-down"></i>
+									</a>
+									<ul class="dropdown-menu">
+										{% for idea in ideas %}
+										<li><a href="{{ idea.get_absolute_url }}">{{ idea.name }}</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+
+								<li><a href="{% url 'products:features' %}">Features</a></li>
+								<li><a href="{% url 'products:how_to_apply' %}">How to Apply</a></li>
+								{% if user.is_authenticated %}
+									<li><a href="{% url 'core:logout' %}">Logout</a></li>
+								{% else %}
+									<li><a href="{% url 'core:login_flapsta' %}">Login</a></li>
+								{% endif %}
+
+							</ul>
+						</nav>
+					</div>
+					<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+						<i class="icon icon-bars"></i>
+					</button>
+				</div>
+			</header>
+			{% endblock header %}
+
+			{% block content %}
+			<div role="main" class="main">
+				<div id="content" class="content full">
+					<section class="home-top-clean">
+						<div class="slider-container">
+							<div class="slider" id="topRevolutionSlider" data-plugin-options='{"startheight": 600}'>
+								<ul>
+									<li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+
+										<img src="{{ STATIC_URL }}img/slides/slide-basic-bg-1.jpg" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+										<div class="tp-caption top-label md customin"
+											data-x="left" data-hoffset="15"
+											data-y="170"
+											data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+											data-speed="800"
+											data-start="0"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">Everything for your new
+										</div>
+
+										<div class="tp-caption main-label md customin"
+											data-x="left" data-hoffset="15"
+											data-y="190"
+											data-customin="x:0;y:0;z:0;rotationX:90;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:200;transformOrigin:50% 0%;"
+											data-speed="800"
+											data-start="300"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">WEBSITE
+										</div>
+
+										<div class="tp-caption bottom-label md sfb"
+											data-x="left" data-hoffset="35"
+											data-y="290"
+											data-speed="800"
+											data-start="500"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">HTML5 . Bootstrap 3 . Premium Sliders . Unlimited Colors
+										</div>
+
+										<div class="tp-caption sft"
+											data-x="left" data-hoffset="105"
+											data-y="340"
+											data-speed="800"
+											data-start="700"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">
+												<a data-hash href="#get-started" class="btn btn-lg btn-primary main-button">Get Started Now!</a>
+										</div>
+
+										<div class="tp-caption sfb"
+											data-x="right" data-hoffset="10"
+											data-y="center" data-voffset="10"
+											data-speed="1000"
+											data-start="700"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">
+											<img src="{{ STATIC_URL }}img/slides/slide-caption-1.png" />
+										</div>
+
+									</li>
+									<li data-transition="fade" data-slotamount="13" data-masterspeed="300" >
+
+										<img src="{{ STATIC_URL }}img/slides/slide-clean-bg-1.jpg" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+										<div class="tp-caption sfr"
+											data-x="center" data-hoffset="-200"
+											data-y="center" data-voffset="30"
+											data-speed="800"
+											data-start="0"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">
+											<img src="{{ STATIC_URL }}img/slides/slide-mockup-1.png">
+										</div>
+
+										<div class="tp-caption sfr"
+											data-x="center" data-hoffset="0"
+											data-y="center" data-voffset="30"
+											data-speed="800"
+											data-start="300"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">
+											<img src="{{ STATIC_URL }}img/slides/slide-mockup-2.png">
+										</div>
+
+										<div class="tp-caption sfr"
+											data-x="center" data-hoffset="200"
+											data-y="center" data-voffset="30"
+											data-speed="800"
+											data-start="600"
+											data-easing="Back.easeInOut"
+											data-endspeed="300">
+											<img src="{{ STATIC_URL }}img/slides/slide-mockup-3.png">
+										</div>
+
+										<div class="tp-caption text-bg text-bg-dark white top-label sfr"
+											data-x="left" data-hoffset="130"
+											data-y="center" data-voffset="-52"
+											data-speed="800"
+											data-start="500"
+											data-easing="Back.easeInOut"
+											data-endspeed="300"
+											style="z-index: 1001; padding: 10px;">Everything you need.<br>
+										</div>
+
+										<div class="tp-caption text-bg white top-label sfr"
+											data-x="left" data-hoffset="130"
+											data-y="center" data-voffset="-10"
+											data-speed="800"
+											data-start="500"
+											data-easing="Back.easeInOut"
+											data-endspeed="300"
+											style="z-index: 1001; padding: 10px;"><small>to build your next website.</small>
+										</div>
+
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</section>
+				</div>
+				<div class="container">
+
+					<div class="row center" id="get-started">
+						<div class="col-md-12">
+							<h2 class="short lead">
+								We <strong class="alternative-font default">love</strong> what we do, and you will love too.
+							</h2>
+							<p class="featured lead">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla non metus. pulvinar. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut eu risus enim, ut pulvinar lectus. Sed hendrerit nibh.
+							</p>
+						</div>
+					</div>
+
+					<hr class="tall" />
+
+					<div class="row featured-boxes tertiary">
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInUp" data-appear-animation-delay="0">
+								<div class="box-content">
+									<i class="icon-featured icon icon-user"></i>
+									<h4>Loved by Customers</h4>
+									<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInDown" data-appear-animation-delay="150">
+								<div class="box-content">
+									<i class="icon-featured icon icon-trophy"></i>
+									<h4>Winner</h4>
+									<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInUp" data-appear-animation-delay="300">
+								<div class="box-content">
+									<i class="icon-featured icon icon-cogs"></i>
+									<h4>Customizable</h4>
+									<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus. </p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<div class="featured-box featured-box-primary" data-appear-animation="fadeInDown" data-appear-animation-delay="450">
+								<div class="box-content">
+									<i class="icon-featured icon icon-book"></i>
+									<h4>Well Documented</h4>
+									<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<hr class="tall invisible" />
+
+				</div>
+
+				<ul class="portfolio-list sort-destination full-width">
+					<li class="col-md-2 isotope-item websites">
+						<div class="portfolio-item">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Apolo Website</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-1.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item brands">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Company T-Shirt</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-2.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item elements">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Dark Icons</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-3.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item elements">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Toolbars Custom Design</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-4.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item brands">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Personal Card</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-6.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item others">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Magazine Fashion</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-5.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item websites">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>JetOrange Website</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-7.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item elements">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Chat Design</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-8.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item elements">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Dark Dropdown</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-9.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item elements">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Cool Pig Slideshow</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-10.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item icons">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Flat Icons</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-11.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+					<li class="col-md-2 isotope-item others">
+						<div class="portfolio-item img-thumbnail">
+							<a href="portfolio-single.html" class="thumb-info secundary">
+								<span class="thumb-info-image">
+									<span class="thumb-info-act">
+										<span class="thumb-info-content">
+											<h4>Browser Design</h4>
+											<span class="date">January 10, 2013</span>
+											<span class="label label-primary">view project</span>
+										</span>
+									</span>
+									<img alt="" class="img-responsive" src="{{ STATIC_URL }}img/projects/project-12.jpg">
+								</span>
+							</a>
+						</div>
+					</li>
+				</ul>
+
+				<section class="featured highlight">
+					<div class="container">
+						<div class="row center counters">
+							<div class="col-md-3">
+								<strong data-to="4000">0</strong>
+								<label>Happy Clients</label>
+							</div>
+							<div class="col-md-3">
+								<strong data-to="15">0</strong>
+								<label>Years in Business</label>
+							</div>
+							<div class="col-md-3">
+								<strong data-to="352">0</strong>
+								<label>Cups of Coffee</label>
+							</div>
+							<div class="col-md-3">
+								<strong data-to="159">0</strong>
+								<label>High Score</label>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+
+								<hr class="invisible">
+
+								<div class="col-md-4">
+									<div class="feature-box secundary">
+										<div class="feature-box-icon">
+											<i class="icon icon-group"></i>
+										</div>
+										<div class="feature-box-info">
+											<h4 class="shorter">Customer Support</h4>
+											<p class="tall">Lorem ipsum dolor sit amet, consectetur adipiscing <span class="alternative-font">metus.</span> elit. Quisque rutrum pellentesque imperdiet.</p>
+										</div>
+									</div>
+									<div class="feature-box secundary push-top">
+										<div class="feature-box-icon">
+											<i class="icon icon-google-plus"></i>
+										</div>
+										<div class="feature-box-info">
+											<h4 class="shorter">500+ Google Fonts</h4>
+											<p class="tall">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="feature-box secundary">
+										<div class="feature-box-icon">
+											<i class="icon icon-film"></i>
+										</div>
+										<div class="feature-box-info">
+											<h4 class="shorter">Sliders</h4>
+											<p class="tall">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. </p>
+										</div>
+									</div>
+									<div class="feature-box secundary push-top">
+										<div class="feature-box-icon">
+											<i class="icon icon-check"></i>
+										</div>
+										<div class="feature-box-info">
+											<h4 class="shorter">Icons</h4>
+											<p class="tall">Lorem ipsum dolor sit amet, consectetur adipiscing <span class="alternative-font">metus.</span> elit. Quisque rutrum pellentesque imperdiet.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="feature-box secundary">
+										<div class="feature-box-icon">
+											<i class="icon icon-file"></i>
+										</div>
+										<div class="feature-box-info">
+											<h4 class="shorter">HTML5 / CSS3 / JS</h4>
+											<p class="tall">Lorem ipsum dolor sit amet, consectetur adipiscing <span class="alternative-font">metus.</span> elit. Quisque rutrum pellentesque imperdiet.</p>
+										</div>
+									</div>
+									<div class="feature-box secundary push-top">
+										<div class="feature-box-icon">
+											<i class="icon icon-adjust"></i>
+										</div>
+										<div class="feature-box-info">
+											<h4 class="shorter">Unlimited Colors</h4>
+											<p class="tall">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rutrum pellentesque imperdiet. Nulla lacinia iaculis nulla.</p>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="row">
+
+								<hr class="invisible">
+
+								<div class="center">
+									<a class="btn btn-default btn-lg" href="shortcodes.html" data-appear-animation="bounceIn" data-appear-animation-delay="0">View Shortcodes...</a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 center">
+
+							<div class="divider tall colored">
+								<i class="icon icon-star"></i>
+							</div>
+							<h2>Tucson was made by a team of <strong>awesome developers.</strong></h2>
+							<p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta.  </p>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In eu libero ligula. </p>
+						</div>
+					</div>
+					<hr class="invisible">
+
+					<div class="row center">
+						<div class="owl-carousel" data-plugin-options='{"items": 6, "singleItem": false, "pagination": false, "autoPlay": true}'>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-1.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-2.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-3.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-4.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-5.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-6.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-5.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-4.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-3.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-2.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-1.png" alt="">
+							</div>
+							<div>
+								<img class="img-responsive" src="{{ STATIC_URL }}img/logos/logo-6.png" alt="">
+							</div>
+						</div>
+					</div>
+
+					<hr class="tall">
+
+					<section class="call-to-action featured footer">
+						<div class="row">
+							<div class="center">
+								<h3>Tucson is very <strong>easy</strong> to customize and has tons of <strong>features</strong>. <a href="http://themeforest.net/user/Okler/portfolio" target="_blank" class="btn btn-lg btn-primary">Buy Now!</a></h3>
+							</div>
+						</div>
+					</section>
+				</div>
+
+			</div> <!-- end .main -->
+			{% endblock content %}
+
+			{% block footer %}
+			<footer id="footer">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<a href="{% url 'products:index' %}" class="logo push-bottom">
+								<img alt="Flapsta Logo" src="{{ STATIC_URL }}img/logos/flapsta_logo_white.png">
+							</a>
+							<p>Flapsta is design and style.  Creating beautiful cases, so that our customers can embrace art and take it with them where ever they go. <a href="{% url 'products:portfolio' %}" class="btn-flat btn-xs">View More <i class="icon icon-arrow-right"></i></a></p>
+							<div class="contact-details">
+								<ul class="contact">
+									<li><p><i class="icon icon-map-marker"></i> <strong>Address:</strong> 4975 Swenson St. </p></li>
+									<li><p><strong></strong>P.O. Box 19733, Las Vegas, NV 89119</p></li>
+									<li><p><i class="icon icon-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">mail@example.com</a></p></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3">
+							<h4>Links</h4>
+							<ul class="nav nav-list primary">
+								<li><a title="Forgot Password" href="{% url 'core:forgot_password' %}">Forgot Password</a></li>
+								<li><a title="Reset Password" href="{% url 'core:reset_password' %}">Reset Password</a></li>
+								<li><a href="{% url 'core:terms_and_conditions' %}">Terms and Conditions</a></li>
+								<li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
+								<li><a href="{% url 'core:wholesale_contact' %}">Wholesalers</a></li>
+								<li><a href="{% url 'core:contact' %}">Contact Us</a></li>
+							</ul>
+
+							<!-- <a href="#" class="btn-flat pull-right btn-xs view-more-recent-work">View Blog <i class="icon icon-arrow-right"></i></a> -->
+
+						</div>
+						<div class="col-md-3">
+							<h4>Recent Tweets</h4>
+								{% load twitter_tag cache %}
+								{% cache 20 my_tweets %}
+								{% get_tweets for "aronysidoro" as tweets limit 4 %}
+									{% for tweet in tweets %}
+										<p>{{ tweet.html|safe }}</p>
+									{% endfor %}
+								{% endcache %}
+						</div>
+						<div class="col-md-3">
+							<h4>Recent Posts</h4>
+
+							<ul class="list-unstyled recent-work">
+								<li>
+									<a class="thumb-info" href="portfolio-single.html">
+										<img class="img-responsive" width="78" height="78" src="{{ STATIC_URL }}img/projects/project-thumb-11.jpg" alt="">
+									</a>
+								</li>
+								<li>
+									<a class="thumb-info" href="portfolio-single.html">
+										<img class="img-responsive" width="78" height="78" src="{{ STATIC_URL }}img/projects/project-thumb-11.jpg" alt="">
+									</a>
+								</li>
+								<li>
+									<a class="thumb-info" href="portfolio-single.html">
+										<img class="img-responsive" width="78" height="78" src="{{ STATIC_URL }}img/projects/project-thumb-11.jpg" alt="">
+									</a>
+								</li>
+								<li>
+									<a class="thumb-info" href="portfolio-single.html">
+										<img class="img-responsive" width="78" height="78" src="{{ STATIC_URL }}img/projects/project-thumb-11.jpg" alt="">
+									</a>
+								</li>
+								<li>
+									<a class="thumb-info" href="portfolio-single.html">
+										<img class="img-responsive" width="78" height="78" src="{{ STATIC_URL }}img/projects/project-thumb-11.jpg" alt="">
+									</a>
+								</li>
+								<li>
+									<a class="thumb-info" href="portfolio-single.html">
+										<img class="img-responsive" width="78" height="78" src="{{ STATIC_URL }}img/projects/project-thumb-11.jpg" alt="">
+									</a>
+								</li>
+							</ul>
+
+							<a href="{% url 'products:portfolio' %}" class="btn-flat pull-right btn-xs view-more-recent-work">View More <i class="icon icon-arrow-right"></i></a>
+
+						</div>
+					</div>
+				</div>
+				<div class="footer-copyright">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+								<p>Copyright © 2014. All Rights Reserved.</p>
+							</div>
+							<div class="col-md-6">
+								<ul class="social-icons">
+									<li><a href="http://www.twitter.com/" target="_blank" rel="tooltip" title="Twitter"><i class="icon icon-twitter"></i></a></li>
+									<li><a href="http://www.facebook.com/" target="_blank" rel="tooltip" title="Facebook"><i class="icon icon-facebook"></i></a></li>
+									<li><a href="http://www.google.com/" target="_blank" rel="tooltip" title="Google+"><i class="icon icon-google-plus"></i></a></li> 
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			{% endblock footer %}
+
+		</div><!-- end div .body -->
+
+		{% block js %}
+		<!-- Libs -->
+		<!-- <script src="{{ STATIC_URL }}vendor/jquery.js"></script> -->
+		<script src="{{ STATIC_URL }}vendor/jquery-2.1.0.min.js"></script>
+		<!-- Continue normal -->
+
+		<script src="{{ STATIC_URL }}js/plugins.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery.easing.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery.appear.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery.cookie.js"></script>
+		
+		<script src="{{ STATIC_URL }}vendor/bootstrap.js"></script>
+		<script src="{{ STATIC_URL }}vendor/masonry.js"></script>
+		<script src="{{ STATIC_URL }}vendor/twitterjs/twitter.js"></script>
+		<script src="{{ STATIC_URL }}vendor/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+		<script src="{{ STATIC_URL }}vendor/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+		<script src="{{ STATIC_URL }}vendor/owl-carousel/owl.carousel.js"></script>
+		<script src="{{ STATIC_URL }}vendor/magnific-popup/magnific-popup.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery.knob.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery.stellar.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery.validate.js"></script>
+		<script src="{{ STATIC_URL }}vendor/isotope/jquery.isotope.js"></script>
+		<script src="{{ STATIC_URL }}vendor/jquery-2.1.0.min.map"></script>
+
+		<!-- Current Page Scripts -->
+		<script src="{{ STATIC_URL }}js/views/view.home.js"></script>
+
+		<!-- Theme Initializer -->
+		<script src="{{ STATIC_URL }}js/theme.js"></script>
+
+		<!-- Custom JS -->
+		<script src="{{ STATIC_URL }}js/custom.js"></script>
+
+		<!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information.
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-12345678-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+		</script>
+		 -->
+		 {% endblock js %}
+
+	</body>
+</html>

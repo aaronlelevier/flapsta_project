@@ -1,0 +1,27 @@
+{% extends "products/base.html" %}
+
+{% block content %}
+<!-- Slider -->
+
+<!-- 12 Products Below -->
+<h3>Index Products</h3>
+<ul>
+{% if featured_products %}
+	{% for product in featured_products %}
+		<li>{{ forloop.counter}}. <a href="{{ product.get_absolute_url }}">{{ product.title }}</a></li>
+	{% endfor %}
+{% else %}
+	<li>No Products</li>
+{% endif %}
+</ul>
+
+
+<h3>Newsletter</h3>
+
+<form action="" method="post">{% csrf_token %}
+		{{ form.as_p }}
+	<input type="submit" value="Submit">
+</form>
+
+
+{% endblock content %}

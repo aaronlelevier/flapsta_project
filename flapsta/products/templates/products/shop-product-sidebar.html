@@ -1,0 +1,266 @@
+{% extends "products/base-basic.html" %}
+
+		{% block css %}
+		{{ block.super }}
+		<!-- Current Page Styles -->
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-shop.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-blog.css" />
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/custom.css" />
+		{% endblock css %}
+
+
+			{% block content %}
+			<div role="main" class="main shop">
+
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-9">
+
+							<div class="row">
+
+								<div class="col-md-6">
+									<div class="owl-carousel" data-plugin-options='{"items": 1, "transitionStyle": "fadeUp", "autoHeight": true}'>
+										<div>
+											<img class="img-responsive img-rounded" src="{{ STATIC_URL }}{{ product.image_one }}" title="{{ product.title }}" alt="{{ product.title }}">
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+
+									<div class="summary entry-summary">
+
+										<h2 class="shorter"><strong>{{ product.title }}</strong></h2>
+
+										<div class="product-votes">
+
+											{% if product.has_votes %}
+												{% if user_voted %}
+													<i class="icon icon-star votes-star color-star"></i><span class="votes-count"> {{ product.votes }}</span>
+												{% else %}
+													<a href="{% url 'products:vote_for_product' product.slug %}"><i class="icon icon-star votes-star"></i></a><span class="votes-count"> {{ product.votes }}</span>
+													{% endif %}
+											{% else %}
+												<a href="{% url 'products:vote_for_product' product.slug %}"><i class="icon icon-star votes-star"></i></a><span>&nbsp; Be the first to Fave!</span>
+											{% endif %}
+
+										</div>
+
+										<p class="price" style="margin-top:0.25em;">
+											<span class="amount">${{ product.price|floatformat:0 }}</span>
+										</p>
+
+										<p class="taller">Flapsta is more than just skins or cases. We offer a new level of protection while allowing you to add personal style to your device. Flapsta consists of 3D gel case plus front 3D gel skin including 3D gel home button. Wherever you go wherever you stay Flapsta will always be with you...Protection and Personalization with style!!  </p>
+										
+											<a href="http://www.amazon.com/gp/product/{{ product.ASIN }}"><button class="btn btn-primary">Buy Now on Amazon</button></a>
+
+									</div>
+
+
+								</div>
+							</div>
+
+								<br>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="tabs tabs-product">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#productInfo" data-toggle="tab">Information</a></li>
+											<li><a href="#productDescription" data-toggle="tab">Aditional Facts</a></li>
+											<!-- <li><a href="#productReviews" data-toggle="tab">Reviews (1)</a></li> -->
+										</ul>
+										<div class="tab-content">
+											<div class="tab-pane active" id="productInfo">
+												<table class="table table-striped push-top">
+													<tbody>
+														<tr>
+															<th>
+																Phone
+															</th>
+															<td>
+																iPhone 5/5s
+															</td>
+														</tr>
+														<tr>
+															<th>
+																Colors
+															</th>
+															<td>
+																{% for color in product.colors.all|slice:":1" %}
+																{{ color }} 
+																{% endfor %}
+															</td>
+														</tr>
+														<tr>
+															<th>
+																Material
+															</th>
+															<td>
+																High quality 3D gel surface that protects your device from scratches and improves its look and feel.
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<div class="tab-pane" id="productDescription">
+													<table class="table table-striped push-top">
+													<tbody>
+														<tr>
+															<th>
+																Front and Rear Gel Cover
+															</th>
+															<td>
+																Helps to prevent your device from sliding on flat or angled surfaces.
+															</td>
+														</tr>
+															<th>
+																Removable
+															</th>
+															<td>
+																And reusable as long as using care and won't leave a residue.
+															</td>
+														</tr>
+														<tr>
+															<th>
+																3D Gel Front Skin
+															</th>
+															<td>
+																Creates a raised surface so when your device is placed face down the screen will be protected.
+															</td>
+														</tr>
+														<tr>
+															<th>
+																Adhesive Nature
+															</th>
+															<td>
+																Of the product allows it to be stuck to flat surfaces such as windows, mirrors and glass.
+															</td>
+														</tr>
+														<tr>
+														<tr>
+															<th>
+																Adhesive Nature Caution
+															</th>
+															<td>
+																Be careful not to set on top of photos and some objects because may stick, read more <a href="{% url 'core:terms_and_conditions' %}">here</a>.
+															</td>
+														</tr>
+														<tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<hr class="tall" />
+
+							<div class="row">
+
+								<div class="col-md-12">
+									<h2>Related <strong>Products</strong></h2>
+								</div>
+
+								<ul class="products thumb-info-list">
+								{% if idea_products %}
+									{% for product in idea_products %}
+
+									<li class="col-md-3 product">
+										{% if product.on_sale %} 
+										<a href="{% url 'products:product' product.slug %}">
+											<span class="onsale">Sale!</span>
+										</a>
+										{% endif %}
+
+										<span class="thumb-info">
+											<a href="{% url 'products:product' product.slug %}" class="add-to-cart-product">
+												<span><i class="icon icon-tag"></i>{{ product.title }}</span>
+											</a>
+											<a href="{% url 'products:product' product.slug %}">
+												<span class="thumb-info-image">
+													<span class="thumb-info-act">
+														<span class="thumb-info-act-left"><em>View</em></span>
+														<span class="thumb-info-act-right"><em><i class="icon icon-plus"></i> Details</em></span>
+													</span>
+													<img title="{{ product.title }}" alt="{{ product.title }}" class="img-responsive" src="{{ STATIC_URL }}{{ product.image_one }}">
+												</span>
+											</a>
+											<span class="thumb-info-content">
+												<a href="{% url 'products:product' product.slug %}">
+													<h4>{{ product.title }}</h4>
+													<span class="price">
+														{% if product.on_sale %}
+														<ins><span class="amount">${{ product.sale_price|floatformat:0 }}</span></ins>
+														<del><span class="amount">${{ product.unit_price|floatformat:0 }}</span></del>
+														{% else %}
+														<ins><span class="amount">${{ product.unit_price|floatformat:0 }}</span></ins>
+														{% endif %}
+													</span>
+												</a>
+											</span>
+										</span>
+									</li>
+
+									{% endfor %}
+								{% endif %}
+
+								</ul>
+
+							</div>
+
+						</div>
+						<div class="col-md-3">
+							<aside class="sidebar">
+
+								<form action="{% url 'products:product_search' %}" method="get">
+									<div class="input-group"> 
+										<input class="form-control" placeholder="Search Products..." name="q" id="q" type="text">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-primary"><i class="icon icon-search"></i></button>
+										</span>
+									</div>
+								</form>
+
+								<hr />
+
+								<h5>Tags</h5>
+
+								{% for idea in product.ideas.all %}
+								<a href="{{ idea.get_absolute_url }}"><span class="label label-dark">{{ idea.name }}<span></a> 
+								{% endfor %}
+
+								<hr />
+
+								<h5>Similar Color Products</h5>
+								<ul class="simple-post-list">
+									{% if color_products %}
+										{% for product in color_products %}
+										<li>
+											<div class="post-image">
+												<div class="img-thumbnail">
+													<a href="{{ product.get_absolute_url }}">
+														<img title="{{ product.title }}" alt="{{ product.title }}" width="60" height="60" class="img-responsive" src="{{ STATIC_URL }}{{ product.image_one }}">
+													</a>
+												</div>
+											</div>
+											<div class="post-info">
+												<a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+												<div class="post-meta">
+													${{ product.price|floatformat:0 }}
+												</div>
+											</div>
+										</li>
+										{% endfor %}
+									{% endif %}
+
+								</ul>
+
+							</aside>
+						</div>
+					</div>
+				</div>
+			</div> <!-- end div .main -->
+			{% endblock content %}

@@ -1,0 +1,164 @@
+{% extends "products/base-basic.html" %}
+
+		{% block css %}
+		{{ block.super }}
+		<!-- Current Page Styles -->
+		<link rel="stylesheet" href="css/theme-blog.css" />
+		{% endblock css %}
+
+		{% block content %}
+			<div role="main" class="main">
+
+				<section class="page-top">
+					<div class="slider-container">
+						<div class="slider page-top-slider" data-plugin-options='{"startheight": 320}'>
+							<ul>
+								<li data-transition="fade" data-slotamount="1" data-masterspeed="300">
+
+									<img src="{{ STATIC_URL }}img/slides/features_mountains.jpg" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="page-top-info with-slider container">
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="breadcrumb">
+									<li><a href="index.html">Home</a></li>
+									<li class="active">Features</li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h2>Features</h2>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="container">
+
+					<!-- My Html -->
+
+					<div class="row">
+						<div class="col-md-6">
+							<h2 class="short">Progress Bar</h2>
+
+							<div class="progress-bars">
+								<div class="progress-label">
+									<span>Style</span>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="100%">
+										<span class="progress-bar-tooltip">100%</span>
+									</div>
+								</div>
+								<div class="progress-label">
+									<span>Design</span>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="96%" data-appear-animation-delay="300">
+										<span class="progress-bar-tooltip">96%</span>
+									</div>
+								</div>
+								<div class="progress-label">
+									<span>Coolness</span>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="93%" data-appear-animation-delay="600">
+										<span class="progress-bar-tooltip">93%</span>
+									</div>
+								</div>
+								<div class="progress-label">
+									<span>For Our Customers</span>
+								</div>
+								<div class="progress">
+									<div class="progress-bar progress-bar-primary" data-appear-progress-animation="100%" data-appear-animation-delay="900">
+										<span class="progress-bar-tooltip">100%</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-6">
+							<hr class="visible-sm visible-xs tall" />
+							<h1 class="short">Where ever you go...</h1>
+							<h2>Whether you are on the beach, in the forest, hiking a sandy mountain, or waiting for a subway train in New York, or even maybe you are <a rel="tooltip" href="#" data-original-title="in the ocean">in the ocean</a>.  Well... that may be a little much, unless your phone is water proof.  But, <a rel="tooltip" href="#" data-original-title="where ever">where ever you go...</a></h2>
+						</div>
+
+					</div>
+
+					<hr class="tall" />
+
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="col-md-6">
+								<h1 class="short">Gel Front Case Cover</h1>
+								<h2>Adhesive front gel cover for cool looking front phone protection and a unique feel.  The stylish designs travel from the front to the back of the phone, offering a special user experience from the feel of this type of case.</h2>
+							</div>
+
+							<div class="col-md-6">
+								<div class="post-image single">
+									<a class="img-thumbnail lightbox" href="{{ STATIC_URL }}img/features/frontside.jpg" data-plugin-options='{"type":"image"}'>
+										<img class="img-responsive img-rounded" src="{{ STATIC_URL }}img/features/frontside.jpg" alt="phone case frontside">
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<hr class="tall" />
+
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="col-md-6">
+								<div class="post-image single">
+									<a class="img-thumbnail lightbox" href="{{ STATIC_URL }}img/features/backside.jpg" data-plugin-options='{"type":"image"}'>
+										<img class="img-responsive img-rounded" src="{{ STATIC_URL }}img/features/backside.jpg" alt="phone case frontside">
+									</a>
+								</div>
+							</div>
+
+							<div class="col-md-6">
+								<hr class="visible-sm visible-xs tall" />
+								<h1 class="short">Embedded Rear Gel</h1>
+								<h2>The rear gel cushion matches the design chosen for both front and rear.  It is embedded in the phone case.  This phone case looks great and has special feel when holding the phone unlike normal hard cases or those made with silicone, etc...</h2>
+							</div>
+
+						</div>
+					</div>
+
+					<br>
+					<hr class="tall" />
+
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="col-md-6">
+								<hr class="visible-sm visible-xs tall" />
+								<h1 class="short">Navigation Button Cover</h1>
+								<h2>The case comes with a matching navigation button cover for a total phone cover design.  Feels cool when pushing the phone button and looks great.</h2>
+							</div>
+
+							<div class="col-md-6">
+								<div class="post-image single">
+									<a class="img-thumbnail lightbox" href="{{ STATIC_URL }}img/features/frontwithbutton.jpg" data-plugin-options='{"type":"image"}'>
+										<img class="img-responsive img-rounded" src="{{ STATIC_URL }}img/features/frontwithbutton.jpg" alt="phone case frontside">
+									</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<br>
+
+				</div>
+			</div>
+			{% endblock content %}

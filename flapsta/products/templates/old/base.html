@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Flapsta</title>
+</head>
+
+<body>
+<!-- Django Messages -->
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<!-- Navbar -->
+<h3>Navbar</h3>
+<ul>
+<!-- Normal Links -->
+	<li><a href="{% url 'products:index' %}">Home</a></li>
+	<li><a href="{% url 'products:portfolio' %}">Portfolio</a></li>
+	<li><a href="{% url 'products:features' %}">Features</a></li>
+	<li><a href="{% url 'products:how_to_apply' %}">How to Apply</a></li>
+	<li><a href="{% url 'core:contact' %}">Contact</a></li>
+	<li><a href="{% url 'core:terms_and_conditions' %}">Terms and Conditions</a></li>
+	<li><a href="{% url 'core:privacy_policy' %}">Privacy Policy</a></li>
+	{% if user.is_authenticated %}
+		<li><a href="{% url 'core:logout' %}">Logout</a></li>
+	{% else %}
+		<li><a href="{% url 'core:login' %}">Login</a></li>
+	{% endif %}
+</ul>
+
+<h3>Tweets</h3>
+{% load twitter_tag cache %}
+{% cache 60 my_tweets %}
+{% get_tweets for "aronysidoro" as tweets limit 5 %}
+	{% for tweet in tweets %}
+		<p>{{ tweet.html|safe }}</p>
+	{% endfor %}
+{% endcache %}
+
+
+<h3>Navbar Ideas</h3>
+<ul>
+{% if ideas %}
+	{% for idea in ideas %}
+		<li><a href="{{ idea.get_absolute_url }}">{{ forloop.counter }}.{{ idea.name }}</a></li>
+	{% endfor %}
+{% else %}
+	<li>No Ideas</li>
+{% endif %}
+</ul>
+
+
+
+{% block content %}{% endblock content %}
+</body>
+
+</html>

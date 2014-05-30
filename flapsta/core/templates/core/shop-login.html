@@ -1,0 +1,161 @@
+{% extends "products/base-basic.html" %} 
+
+		{% block css %}
+		{{ block.super }}
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-shop.css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}css/theme-blog.css" />
+		{% endblock css %}
+
+			{% block content %}
+			<div role="main" class="main shop"> 
+
+				<div class="container">
+
+					<div class="row">
+						<div class="col-md-12">
+
+							<div class="row featured-boxes">
+								<div class="col-md-6">
+									<div class="featured-box default">
+										<div class="box-content">
+											<h4>I'm a Returning Customer</h4>
+
+											<form action="" method="post">{% csrf_token %}
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-12">
+
+															{% if login_form.login_username.errors %}
+										            {{ login_form.login_username.errors }}
+									            {% endif %}
+
+															<label for="{{ login_form.login_username.id_for_label }}">
+																{{ login_form.login_username.label }}
+															</label>
+															<input id="{{ login_form.login_username.id_for_label }}" name="{{ login_form.login_username.name }}" type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-12">
+
+															{% if login_form.login_password.errors %}
+										            {{ login_form.login_password.errors }}
+									            {% endif %}
+
+															<a class="pull-right" href="{% url 'core:forgot_password' %}">(Lost Password?)</a>
+															<label for="{{ login_form.login_password.id_for_label }}">
+																{{ login_form.login_password.label }}
+															</label>
+															<input id="{{ login_form.login_password.id_for_label }}" name="{{ login_form.login_password.name }}" type="password" value="" class="form-control">
+														</div>
+													</div>
+												</div>
+												<div class="row">
+
+													<div class="col-md-12">
+														<input type="submit" name="login" value="Login" class="btn btn-primary pull-right push-bottom">
+													</div>
+												</div>
+											</form>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-6">
+									<div class="featured-box default">
+										<div class="box-content">
+											<h4>Register An Account</h4>
+
+											<form action="" method="post">{% csrf_token %}
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-12">
+
+															{% if register_form.register_email.errors %}
+										            {{ register_form.register_email.errors }}
+									            {% endif %}
+
+															<label for="{{ register_form.register_email.id_for_label }}">
+																{{ register_form.register_email.label }}
+															</label>
+															<input id="{{ register_form.register_email.id_for_label }}" name="{{ register_form.register_email.name }}" type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-6">
+
+															{% if register_form.register_username.errors %}
+										            {{ register_form.register_username.errors }}
+									            {% endif %}
+
+															<label for="{{ register_form.register_username.id_for_label }}">
+																{{ register_form.register_username.label }}
+															</label>
+															<input id="{{ register_form.register_username.id_for_label }}" name="{{ register_form.register_username.name }}" type="text" class="form-control">
+														</div>
+														<div class="col-md-6">
+
+															{% if register_form.register_password.errors %}
+										            {{ register_form.register_password.errors }}
+									            {% endif %}
+									            
+															<label for="{{ register_form.register_password.id_for_label }}">
+																{{ register_form.register_password.label }}
+															</label>
+															<input id="{{ register_form.register_password.id_for_label }}" name="{{ register_form.register_password.name }}" type="password" class="form-control">
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+													<div class="col-md-12">
+														<input type="submit" name="register" value="Register" class="btn btn-primary pull-right push-bottom">
+													</div>
+												</div>
+											</form>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div><!-- end Row 1 -->
+
+					<hr class="short">
+					
+					<!-- Social Media Logins -->
+
+					<div class="row" style="padding-top:1em;">
+
+						<div class="col-md-4">
+							<div class="feature-box social_logins">
+								<p><a href="{% url 'socialauth_begin' 'google' %}"><img src="{{ STATIC_URL }}img/logos/Login_GOOG.jpg" alt="Login with Google"></a></p>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="feature-box social_logins">
+								<p><a href="{% url 'socialauth_begin' 'twitter' %}"><img src="{{ STATIC_URL }}img/logos/Login_TWTR.jpg" alt="Login with Twitter"></a></p>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="feature-box social_logins">
+								<p><a href="{% url 'socialauth_begin' 'facebook' %}"><img src="{{ STATIC_URL }}img/logos/Login_FB.jpg" alt="Login with Facebook"></a></p>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+			{% endblock content %}
